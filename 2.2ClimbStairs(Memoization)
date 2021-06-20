@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int cs(int n,vector<int> dp){
+   
+    
+    if(n==0)
+    return 1;
+    else if(n<0)
+    return 0;
+      if(dp[n]!=0)
+    return dp[n];
+ 
+  
+    int csm1=cs(n-1,dp);
+    int csm2=cs(n-2,dp);
+    int csm3=cs(n-3,dp);
+    int cst=csm1+csm2+csm3;
+    dp[n]=cst;
+    return cst;
+
+    
+
+    
+
+}
+
+int main(){
+    int n;
+    cin>>n;
+    vector<int> v(n+1,0);
+    cout<<cs(n,v)<<endl;
+}
