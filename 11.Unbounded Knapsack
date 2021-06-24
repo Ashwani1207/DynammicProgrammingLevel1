@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int n;
+    cin>>n;
+    vector<int> weigh(n,0);
+    vector<int> v(n,0);
+    
+    for(int i=0;i<n;i++){
+        cin>>weigh[i];
+    }
+    for(int i=0;i<n;i++)
+    cin>>v[i];
+    
+    int cap;
+    cin>>cap;
+    vector<int> dp(cap+1,0);
+    dp[0]=0;
+    for(int i=1;i<dp.size();i++){
+        for(int j=0;j<n;j++){
+            if(i>=v[j])
+            {
+                if(dp[i]<weigh[j]+dp[i-v[j]])
+                dp[i]=weigh[j]+dp[i-v[j]];
+            }
+        }
+    }
+    cout<<dp[cap]<<endl;
+    return 0;
+}
