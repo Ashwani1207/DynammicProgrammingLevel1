@@ -1,0 +1,18 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int n;
+    cin>>n;
+    long long obwlb=1;
+    long long obwls=1;
+    long long nbwlb,nbwls;
+    for(int i=2;i<=n;i++){
+        nbwlb=obwls;
+        nbwls=obwls+obwlb;
+        obwlb=nbwlb;
+        obwls=nbwls;
+    }
+   long long final=nbwls+nbwlb;
+    long long total_forbothsides=final*final;
+    cout<<total_forbothsides<<endl;
+}
