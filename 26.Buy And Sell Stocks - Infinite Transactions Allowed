@@ -1,0 +1,23 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int n;
+    cin>>n;
+    int profit[n];
+    for(int i=0;i<n;i++)
+    cin>>profit[i];
+    int sd=0,bd=0;
+    int psf=0;
+    for(int i=1;i<n;i++){
+        if(profit[i]>=profit[i-1])
+        sd++;
+        else{
+            psf+=profit[sd]-profit[bd];
+            sd=bd=i;
+        }
+    }
+    //for the last one up path whwn it was only increasing
+    psf+=profit[sd]-profit[bd];
+    cout<<psf<<endl;
+    return 0;
+}
