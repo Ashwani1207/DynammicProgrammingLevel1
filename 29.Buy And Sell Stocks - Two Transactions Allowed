@@ -1,0 +1,41 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++)
+    cin>>arr[i];
+    int lsf=arr[0];
+    int maxl=0;
+    vector<int> dpl(n,0);
+    for(int i=1;i<n;i++){
+        if(lsf>arr[i])
+        lsf=arr[i];
+        maxl=arr[i]-lsf;
+        if(maxl>dpl[i-1])
+        dpl[i]=maxl;
+        else
+        dpl[i]=dpl[i-1];
+    }
+    int msf=arr[n-1];
+    vector<int> dpr(n,0);
+    int maxr=0;
+    for(int i=n-2;i>=0;i--)
+    {
+        if(arr[i]>msf)
+        msf=arr[i];
+        maxr=msf-arr[i];
+        if(maxr>dpr[i+1])
+        dpr[i]=maxr;
+        else
+        dpr[i]=dpr[i+1];
+    }
+    int tmax=INT_MIN;
+    for(int i=0;i<n;i++){
+        if(dpl[i]+dpr[i]>tmax)
+        tmax=dpl[i]+dpr[i];
+    }
+    cout<<tmax<<endl;
+    return 0;
+}
